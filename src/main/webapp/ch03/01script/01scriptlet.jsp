@@ -22,6 +22,8 @@
 	out.println("</h1>");
 	%>
 	
+	<h1>Lorem ipsum.</h1>
+	<h1>Laudantium consequatur!</h1>
 	
 </body>
 </html>
