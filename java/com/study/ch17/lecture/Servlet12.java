@@ -8,16 +8,16 @@ import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 
 /**
- * Servlet implementation class Servelet10
+ * Servlet implementation class Servlet12
  */
-@WebServlet("/lec/sample10")
-public class Servelet10 extends HttpServlet {
+@WebServlet("/lec/sample12")
+public class Servlet12 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Servelet10() {
+    public Servlet12() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,37 +26,41 @@ public class Servelet10 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		// forward
-		String view = "/WEB-INF/view/ch17/view08.jsp";
-		request.getRequestDispatcher(view).forward(request, response);
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("포스트 요청 받음");
+		// 삭제
 		
-		// request 파라미터 꺼내기
-		String name = request.getParameter("name");
 		
-		// business logic
-		// 데이터 베이스 이름 추가 (session 으로 간단히 흉내)
+		// 1. request 파라미터 얻기
+		int index = Integer.parseInt(request.getParameter("index")); 
+		
+		// 2. business logic 처리(삭제 처리)
 		HttpSession session = request.getSession();
-		Object o = session.getAttribute("db");
-		if (o == null) {
-			o = new ArrayList<String>();
-			session.setAttribute("db", o);
-		}
-		List<String> list = (List<String>) o;
-		list.add(name);
+		List<String> list = (List<String>) session.getAttribute("db");
+		list.remove(index);
 		
-		// add attribute
+		// 3. add attribute
 		
-		// forward / redirect
+		// 4. forward / redirect
 		String location = request.getContextPath() + "/lec/sample09";
 		response.sendRedirect(location);
+		
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
